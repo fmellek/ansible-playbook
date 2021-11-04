@@ -1,0 +1,21 @@
+---
+  - name: File Info 
+    hosts: dev
+    tasks:
+      - name: Adding file
+        file:
+          path: /tmp/file1
+          state: touch
+          mode: '0644'
+      
+      - name: Adding file
+        file:
+          path: /tmp/file2
+          state: touch
+          mode: '0664'
+      
+      - name: Adding file
+        file:
+          path: /tmp/file3
+          state: touch
+          mode: '0444'

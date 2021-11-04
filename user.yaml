@@ -1,0 +1,11 @@
+---
+  - name: User Info
+    hosts: dev
+    tasks:
+      - name: Add user
+        user: 
+          name: bob
+      
+      - name: Add user
+        user: 
+          name: anna
