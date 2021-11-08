@@ -9,4 +9,7 @@ all:
           ansible_port: "55500" #ssh port
         host2:
           ansible_host: "10.108.0.4"
+        host3: #host name of Ubuntu VM
+          ansible_host: "10.108.0.5"
+          ansible_port: "55500"
         
