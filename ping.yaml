@@ -4,3 +4,9 @@
     tasks:
       - name: Ping
         ping:
+  
+  - name: Ping Ubuntu Server
+    hosts: host3
+    tasks:
+      - name: Ping
+        ping:
