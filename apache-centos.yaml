@@ -3,21 +3,41 @@
   hosts: dev
   gather_facts: true
   tasks:
-    - name: install apache
-      when: ansible_pkg_mgr == "yum"
+    - name: install apache for CentOS Servers
+      when: (ansible_distribution == "CentOS" and ansible_pkg_mgr == "yum")
       yum:
         name: httpd
         state: latest
+    
+    - name: install apache for Ubuntu Server
+      when: (ansible_distribution == "Ubuntu" and ansible_pkg_mgr == "apt")
+      apt:
+        name: apache2
+        state: latest
+      
 
-    - name: start the service of apache
-      when: ansible_service_mgr == "systemd"
+    - name: start the service of apache for CentOS Servers
+      when: ansible_service_mgr == "systemd" and ansible_distribution == "CentOS"
       systemd:
         state: started
         name: httpd
+      
+    - name: start the service of apache for Ubuntu Servers
+      when: ansible_service_mgr == "systemd" and ansible_distribution == "Ubuntu"
+      systemd:
+        state: started
+        name: apache2
     
-    - name: enable httpd and ensure it is not masked
-      when: ansible_service_mgr == "systemd"
+    - name: enable httpd and ensure it is not masked for CentOS Servers
+      when: ansible_service_mgr == "systemd" and ansible_distribution == "CentOS"
       systemd:
         name: httpd
+        enabled: yes
+        masked: no
+    
+    - name: enable httpd and ensure it is not masked for Ubuntu Servers
+      when: ansible_service_mgr == "systemd" and ansible_distribution == "Ubuntu"
+      systemd:
+        name: apache2
         enabled: yes
         masked: no
