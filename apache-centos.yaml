@@ -1,18 +1,22 @@
 ---
 - name: Apache installation,enable,start the service
   hosts: dev
+  gather_facts: true
   tasks:
     - name: install apache
+      when: ansible_pkg_mgr == "yum"
       yum:
         name: httpd
         state: latest
 
     - name: start the service of apache
+      when: ansible_service_mgr == "systemd"
       systemd:
         state: started
         name: httpd
     
     - name: enable httpd and ensure it is not masked
+      when: ansible_service_mgr == "systemd"
       systemd:
         name: httpd
         enabled: yes

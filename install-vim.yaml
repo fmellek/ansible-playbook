@@ -1,0 +1,14 @@
+---
+- name: Install Vim on CentOS servers
+  hosts: dev
+  gather_facts: yes
+  tasks:
+   - name: Ping
+     when: ansible_distribution_version == "7.8"
+     ping:
+
+   - name: Install Vim
+     when: ansible_pkg_mgr == "yum"
+     yum:
+       name: vim
+       state: latest
