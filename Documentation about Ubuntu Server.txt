@@ -1,0 +1,24 @@
+- According to task firstly we need to provision our droplet in DigitalOcean.
+- During the provisioning we need to choose our data center in NYC3 for using private IP address to connect.
+- We're gonna ssh to this VM so we need to put ansible-server's key to this VM and in case our laptop's ssh key.
+- After provision if we want our ansible to aware of this VM; we need to put our IP address to the /etc/ansible/hosts file.
+- Since all our VMs are in the same network under the dev group in /etc/ansible/hosts we can put host3's private IP address.
+- Then we have to modify our custom inventory to which is called inventory.yaml where is located under ansible-playbook git repository.
+- Also in task it has been said that we need to hit different port number so in inventory.yaml we need to specify that as well.
+- When we are done for our custom inventory; the best way to check our host3 is the ping that server.
+- Under the ping.yaml our target would be host3 and the module we are going to use is "ping".
+- When we run our ping.yaml playbook no syntax error and it works perfectly fine.
+- Then according to task we need to modify our apache-centos.yaml; we're going to download and install apache to our host3 and we need to start it and enable the service.
+- Since it's a "Ubuntu" operating system so our conditions and modules has to be fit for that operating system.
+- There is two key things for gathering facts:
+    1- Which distribution we're using is really important
+    2- Which operating system is using which package manager.
+- And to keep our gather facts activated we need to keep it in true or yes condition.
+- Then Ubuntu's package manager is apt; so when we write our conditions we need to specify our package manager and the distribution system has to be Ubuntu.
+- Module will be apt and service name for apache is apache2 in Ubuntu operating system.
+- And for enabling and starting the service we will be using systemd.
+- For this module also accurate to our operating system we need to put in our condition.
+- We need to specify our service manager in the conditions.
+- And when I write these conditions I followed the and combine condition methods.
+- Because in and condition methods both conditions has to be correct.
+- This is the way how I did my task.
