@@ -1,0 +1,31 @@
+---
+- name: Install packages in remote servers
+  hosts: dev
+  gather_facts: true
+  tasks:
+    - name: Ping the servers
+      ping:
+
+    - name: Install epel-release for CentOS distribution
+      when: ansible_distribution == "CentOS"
+      yum:
+        name: epel-release
+      register: task1_result
+
+    - name: Install packages to CentOS and task1_result = success
+      when:
+      - ansible_distribution == "CentOS"
+      - task1_result is succeeded
+      yum:
+        name:
+        - vim
+        - curl
+        state: latest
+    
+    - name: Install packages to Ubuntu Server
+      when: ansible_distribution == "Ubuntu"
+      apt:
+        name:
+        - vim
+        - curl
+        state: latest
