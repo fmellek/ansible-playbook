@@ -1,9 +1,10 @@
 ---
   - name: Ping Servers
-    hosts: host1
+    hosts: prod
     tasks:
       - name: Ping
         ping:
+        when: "'prod' in groups"
   
   - name: Ping Ubuntu Server
     hosts: host3
