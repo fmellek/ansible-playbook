@@ -8,8 +8,9 @@
     tasks:
       - name: Ping
         ping:
-        when: a == 12
+        when: c == 12
         register: ping1_result
+        ignore_errors: True
       
       - name: Ping 2
         ping:
