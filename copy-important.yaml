@@ -1,0 +1,12 @@
+---
+- name: Copy the important.txt file
+  hosts: host2
+  gather_facts: True
+  tasks:
+    - name: copy important.txt
+      copy:
+        src: important.txt
+        dest: /root/
+        owner: root
+        group: root
+        mode: '0664'

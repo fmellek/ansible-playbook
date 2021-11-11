@@ -1,0 +1,10 @@
+---
+- name: Copy from remote server to our local
+  hosts: host2
+  gather_facts: True
+  tasks:
+    - name: Copy important.txt from remote to local server
+      fetch:
+        src: /root/important.txt
+        dest: /root/ansible-playbook/
+        flat: yes
